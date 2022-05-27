@@ -1,0 +1,134 @@
+.PaletaLista {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: (1fr)[3];
+      grid-template-columns: repeat(3, 1fr);
+  grid-gap: 25px 50px;
+}
+
+@media (max-width: 1220px) {
+  .PaletaLista {
+    -ms-grid-columns: (1fr)[2];
+        grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 840px) {
+  .PaletaLista {
+    -ms-grid-columns: 1fr;
+        grid-template-columns: 1fr;
+  }
+}
+
+.PaletaListaItem {
+  font-family: "Exo";
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 10px;
+  padding: 10px;
+  width: 315px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  position: relative;
+}
+
+@media (max-width: 400px) {
+  .PaletaListaItem {
+    width: 210px;
+    height: 180px;
+  }
+}
+
+.PaletaListaItem > div {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.PaletaListaItem__titulo {
+  font-size: 1.5em;
+  font-weight: 700;
+  line-height: 100%;
+}
+
+.PaletaListaItem__descricao {
+  font-size: 0.85em;
+}
+
+.PaletaListaItem__preco {
+  color: #9400d3;
+}
+
+.Acoes {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.Acoes__adicionar,
+.Acoes__remover {
+  border: none;
+  color: white;
+  border-radius: 5px;
+  font-family: "Exo", sans-serif;
+  padding: 5px;
+  max-width: 280px;
+  text-align: center;
+  font-weight: 700;
+  text-transform: uppercase;
+  cursor: pointer;
+  width: 48%;
+}
+
+.Acoes__remover {
+  background-color: #ff0000;
+}
+
+.Acoes__adicionar {
+  background-color: #9400d3;
+}
+
+.Acoes__adicionar--preencher {
+  width: 100%;
+}
+
+.PaletaListaItem__foto {
+  height: 150px;
+  margin-right: -60px;
+}
+
+.PaletaListaItem__badge {
+  background-color: greenyellow;
+  width: 20px;
+  height: 20px;
+  text-align: center;
+  vertical-align: middle;
+  position: absolute;
+  color: black;
+  font-size: .8em;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  border-radius: 50%;
+  top: -9px;
+  left: -9px;
+}
+/*# sourceMappingURL=PaletaLista.css.map */
