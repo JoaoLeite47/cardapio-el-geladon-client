@@ -1,30 +1,3 @@
-.Home {
-    position: relative;
-    background-image: radial-gradient(
-      farthest-corner at 40px 40px,
-      #50c5ee 60%,
-      rgba(0, 212, 255, 0.5) 100%
-    );
-    min-height: calc(100vh - 60px);
-    margin: 15px;
-    padding: 15px;
-    border-radius: 20px;
-    color: black;
-    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.3);
-  }
-
-.Home__Container {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-@media (max-width: 350px) {
-  .Home__Container {
-    justify-content: unset;
-  }
-}
-
 Header {
   max-width: 110px;
   margin: 0 auto 25px auto;
@@ -32,15 +5,23 @@ Header {
 }
 
 .row {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
   width: 100%;
-  justify-content: space-between;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
   margin: 15px 10px 35px 10px;
 }
 
 .Logo {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  align-items: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
   border-radius: 10px;
   background-color: rgba(255, 255, 255, 0.3);
   width: 340px;
@@ -77,9 +58,15 @@ Header {
   position: absolute;
   color: white;
   font-size: 0.9em;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  justify-content: center;
-  align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
   border-radius: 50%;
   bottom: 0;
   right: 0;
@@ -101,12 +88,12 @@ Header {
   .Header {
     max-width: 250px;
   }
-
   .row {
-    column-gap: 20px;
+    -webkit-column-gap: 20px;
+            column-gap: 20px;
   }
-
   .Logo__titulo {
     font-size: 1.5em;
   }
 }
+/*# sourceMappingURL=navbar.css.map */
