@@ -2,12 +2,15 @@ import "./PaletaLista.css";
 import React, { useState, useEffect } from "react";
 import PaletaListaItem from "../PaletaListaItem/PaletaListaItem.jsx";
 import { PaletaService } from "services/PaletaService.js";
+import PaletaDetalhesModal from "../PaletaDetalhesModal/PaletaDetalhesModal.jsx";
 
 function PaletaLista() {
   // lista as paletas
-  const [paletas, setPaletas] = useState([]);
+  const [paletas, setPaletas] = useState([]); // array de paletas
 
   const [paletaSelecionada, setPaletaSelecionada] = useState({}); // modificar a quatidade de paletas
+
+  const [paletaModal, setPaletaModal] = useState(false); // modal da paleta
 
   const adicionarItem = (paletaIndex) => {
     const paleta = {
@@ -42,8 +45,15 @@ function PaletaLista() {
           index={index}
           onRemove={(index) => removerItem(index)}
           onAdd={(index) => adicionarItem(index)}
+          clickItem={(paletaId) => setPaletaModal(paleta)}
         />
       ))}
+      {paletaModal && (
+        <PaletaDetalhesModal
+          paleta={paletaModal}
+          closeModal={() => setPaletaModal(false)} // fechar o modal de paletas
+        />
+      )}
     </div>
   );
 }

@@ -1,0 +1,71 @@
+.PaletaDetalhesModal {
+  font-family: "Exo";
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 10px;
+  padding: 10px 0px 10px 10px;
+  max-height: 350px;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  width: 315px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  position: relative;
+}
+
+.PaletaDetalhesModal > div {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.PaletaDetalhesModal__titulo {
+  font-size: 2em;
+  font-weight: 700;
+  line-height: 100%;
+}
+
+.PaletaDetalhesModal__descricao {
+  font-size: 1em;
+}
+
+.PaletaDetalhesModal__preco {
+  color: #9400d3;
+  font-size: 2.5em;
+}
+
+.PaletaDetalhesModal__foto {
+  margin-right: -100px;
+  z-index: 0;
+}
+
+@media (max-width: 400px) {
+  .PaletaDetalhesModal {
+    width: 210px;
+    height: 100vh;
+  }
+  .PaletaDetalhesModal__foto {
+    height: 250px;
+    margin-top: 50px;
+    margin-right: -100px;
+  }
+  .PaletaDetalhesModal__preco {
+    font-size: 2em;
+  }
+  .PaletaDetalhesModal__titulo {
+    font-size: 1.5em;
+  }
+  .PaletaDetalhesModal__descricao {
+    font-size: 0.9em;
+  }
+}
+/*# sourceMappingURL=PaletaDetalhesModal.css.map */
