@@ -47,6 +47,13 @@ Header {
 
 .Sacola__icone {
   cursor: pointer;
+  margin-right: 0.5rem;
+  -webkit-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+}
+
+.Sacola__icone:hover {
+  color: #ffffff;
 }
 
 .Sacola__badge {
@@ -72,6 +79,27 @@ Header {
   right: 0;
 }
 
+.Opcoes {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.Paleta {
+  background: none;
+  border: none;
+}
+
+.Paleta__icone {
+  cursor: pointer;
+  -webkit-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+}
+
+.Paleta__icone:hover {
+  color: #ffffff;
+}
+
 @media (max-width: 1220px) {
   .Header {
     max-width: 720px;
@@ -82,6 +110,19 @@ Header {
   .Header {
     max-width: 320px;
   }
+  .row {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    row-gap: 20px;
+  }
 }
 
 @media (max-width: 400px) {
@@ -91,6 +132,9 @@ Header {
   .row {
     -webkit-column-gap: 20px;
             column-gap: 20px;
+  }
+  .Logo {
+    width: 100%;
   }
   .Logo__titulo {
     font-size: 1.5em;

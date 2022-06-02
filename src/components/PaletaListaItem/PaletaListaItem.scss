@@ -59,10 +59,18 @@
 
 .Acoes__remover {
   background-color: #ff0000;
+  transition: all ease-out 0.5s;
+}
+.Acoes__remover:hover {
+  background-color: #990000;
 }
 
 .Acoes__adicionar {
   background-color: #9400d3;
+  transition: all ease-in-out 0.2s;
+}
+.Acoes__adicionar:hover {
+  background-color: #7000a0;
 }
 
 .Acoes__adicionar--preencher {

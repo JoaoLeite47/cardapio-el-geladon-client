@@ -4,7 +4,7 @@ import PaletaListaItem from "../PaletaListaItem/PaletaListaItem.jsx";
 import { PaletaService } from "services/PaletaService.js";
 import PaletaDetalhesModal from "../PaletaDetalhesModal/PaletaDetalhesModal.jsx";
 
-function PaletaLista() {
+function PaletaLista({ paletaCriada }) {
   // lista as paletas
   const [paletas, setPaletas] = useState([]); // array de paletas
 
@@ -27,13 +27,25 @@ function PaletaLista() {
   }; // função para mudar o estado da paleta
 
   const getLista = async () => {
+    // função para buscar as paletas
     const res = await PaletaService.getLista();
     setPaletas(res);
   };
 
   useEffect(() => {
+    // função para buscar as paletas
     getLista();
   }, []);
+
+  const adicionarPaletaNaLista = (paleta) => {
+    // função para adicionar a paleta na lista
+    const lista = [...paletas, paleta];
+    setPaletas(lista);
+  };
+
+  useEffect(() => {
+    if (paletaCriada) adicionarPaletaNaLista(paletaCriada);
+  }, [paletaCriada]);
 
   return (
     <div className="PaletaLista">
