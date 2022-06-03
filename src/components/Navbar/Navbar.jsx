@@ -1,9 +1,10 @@
 import "./Navbar.css";
 import logo from "../../assets/logo.svg";
-import { IoIosApps } from "react-icons/io";
+import { CgAddR } from "react-icons/cg";
 import { IoBagAdd } from "react-icons/io5";
+import { FiShuffle } from "react-icons/fi";
 
-function Navbar({ createPaleta }) {
+function Navbar({ createPaleta, updatePaleta }) {
   return (
     <div className="Home__header Header">
       <div className="row">
@@ -19,10 +20,21 @@ function Navbar({ createPaleta }) {
         <div className="Header__opcoes Opcoes">
           <button
             type="button"
+            className="Opcoes__paleta Paleta"
+            onClick={() => updatePaleta()}
+          >
+            <FiShuffle
+              size="2.5em"
+              className="Paleta__icone"
+              alt="Editar Paleta"
+            />
+          </button>
+          <button
+            type="button"
             className="Opcoes__Paleta Paleta"
             onClick={() => createPaleta()}
           >
-            <IoIosApps
+            <CgAddR
               size="3em"
               className="Paleta__icone"
               alt="Adicionar Paleta"

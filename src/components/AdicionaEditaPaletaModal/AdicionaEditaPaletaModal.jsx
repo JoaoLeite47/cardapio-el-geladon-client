@@ -1,9 +1,9 @@
-import "./AdicionaPaletaModal.css";
+import "./AdicionaEditaPaletaModal.css";
 import { useState, useEffect } from "react";
 import Modal from "components/Modal/Modal";
 import { PaletaService } from "services/PaletaService";
 
-function AdicionaPaletaModal({ closeModal, oneCreatePaleta }) {
+function AdicionaEditaPaletaModal({ closeModal, oneCreatePaleta }) {
   const form = {
     preco: "",
     sabor: "",
@@ -142,4 +142,4 @@ function AdicionaPaletaModal({ closeModal, oneCreatePaleta }) {
   );
 }
 
-export default AdicionaPaletaModal;
+export default AdicionaEditaPaletaModal;
