@@ -3,8 +3,9 @@ import logo from "../../assets/logo.svg";
 import { CgAddR } from "react-icons/cg";
 import { IoBagAdd } from "react-icons/io5";
 import { FiShuffle } from "react-icons/fi";
+import { ActionMode } from "constants/index";
 
-function Navbar({ createPaleta, updatePaleta }) {
+function Navbar({ createPaleta, updatePaleta, mode }) {
   return (
     <div className="Home__header Header">
       <div className="row">
@@ -20,7 +21,9 @@ function Navbar({ createPaleta, updatePaleta }) {
         <div className="Header__opcoes Opcoes">
           <button
             type="button"
-            className="Opcoes__paleta Paleta"
+            className={`Opcoes__paleta Paleta ${
+              mode === ActionMode.ATUALIZAR && "Paleta--ativa"
+            }`}
             onClick={() => updatePaleta()}
           >
             <FiShuffle

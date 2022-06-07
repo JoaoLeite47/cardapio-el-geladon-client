@@ -88,16 +88,28 @@ Header {
 .Paleta {
   background: none;
   border: none;
+  -webkit-transform: translate(-4px);
+          transform: translate(-4px);
+  border-radius: 10px;
+  -webkit-transition: all 0.5s;
+  transition: all 0.5s;
+  padding: .5;
 }
 
 .Paleta__icone {
   cursor: pointer;
   -webkit-transition: all 0.3s ease-in-out;
   transition: all 0.3s ease-in-out;
+  -webkit-transform: translate(-4px);
+          transform: translate(-4px);
 }
 
 .Paleta__icone:hover {
   color: #ffffff;
+}
+
+.Paleta--ativa {
+  background: darkviolet;
 }
 
 @media (max-width: 1220px) {
