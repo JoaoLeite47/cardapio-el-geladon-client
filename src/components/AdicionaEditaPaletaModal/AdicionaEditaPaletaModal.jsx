@@ -2,14 +2,21 @@ import "./AdicionaEditaPaletaModal.css";
 import { useState, useEffect } from "react";
 import Modal from "components/Modal/Modal";
 import { PaletaService } from "services/PaletaService";
+import { ActionMode } from "constants/index";
 
-function AdicionaEditaPaletaModal({ closeModal, oneCreatePaleta }) {
+function AdicionaEditaPaletaModal({
+  closeModal,
+  onCreatePaleta,
+  mode,
+  paletaToUpdate,
+  onUpdatePaleta,
+}) {
   const form = {
-    preco: "",
-    sabor: "",
-    recheio: "",
-    descricao: "",
-    foto: "",
+    preco: paletaToUpdate?.preco ?? "",
+    sabor: paletaToUpdate?.sabor ?? "",
+    recheio: paletaToUpdate?.recheio ?? "",
+    descricao: paletaToUpdate?.descricao ?? "",
+    foto: paletaToUpdate?.foto ?? "",
   };
   const [state, setState] = useState(form);
 
@@ -21,10 +28,10 @@ function AdicionaEditaPaletaModal({ closeModal, oneCreatePaleta }) {
 
   const canDisableSendButton = () => {
     const res = !Boolean(
-      state.foto.length &&
+      state.descricao.length &&
         state.foto.length &&
         state.sabor.length &&
-        state.preco.length
+        String(state.preco).length
     );
     setCanDisable(res);
   };
@@ -33,23 +40,44 @@ function AdicionaEditaPaletaModal({ closeModal, oneCreatePaleta }) {
     canDisableSendButton();
   });
 
-  const createPaleta = async () => {
-    const renomeiaCaminhoFoto = (fotoPath) => fotoPath.split("\\").pop();
+  const handleSand = async () => {
+    const renomeiaCaminhoFoto = (fotoPath) => fotoPath.split("/\\|\//").pop(); // analisa o tipo de "barra" que o arquivo está sendo salvo
 
     const { sabor, recheio, descricao, preco, foto } = state;
 
     const titulo = sabor + (recheio && " com " + recheio);
 
     const paleta = {
+      ...(paletaToUpdate && { _id: paletaToUpdate.id }),
       sabor: titulo,
       descricao,
       preco,
       foto: `assets/images/${renomeiaCaminhoFoto(foto)}`,
     };
 
-    const res = await PaletaService.create(paleta);
+    const serviceCall = {
+      [ActionMode.NORMAL]: () => PaletaService.create(paleta),
+      [ActionMode.ATUALIZAR]: () => PaletaService.updateById(paletaToUpdate?.id, paleta),
+    }
 
-    oneCreatePaleta(res);
+    const res = await serviceCall[mode]();
+
+    const actionResponse = {
+      [ActionMode.NORMAL]: () => onCreatePaleta(res),
+      [ActionMode.ATUALIZAR]: () => onUpdatePaleta(res),
+    }
+
+    actionResponse[mode]();
+
+    const reset = {
+      preco: '',
+      sabor: '',
+      recheio: '',
+      descricao: '',
+      foto: '',
+    }
+
+    setState(reset);
 
     closeModal();
   };
@@ -58,7 +86,7 @@ function AdicionaEditaPaletaModal({ closeModal, oneCreatePaleta }) {
     <Modal closeModal={closeModal}>
       <div className="AdicionaPaletaModal">
         <form autoComplete="off">
-          <h2>Adicionar ao Cardápio</h2>
+        <h2> { ActionMode.ATUALIZAR === mode ? 'Atualizar' : 'Adicionar ao' } Cardápio </h2>
           <div>
             <label className="AdicionarPaletaModal__Text" htmlFor="preco">
               Preço:
@@ -123,7 +151,6 @@ function AdicionaEditaPaletaModal({ closeModal, oneCreatePaleta }) {
               type="file"
               id="foto"
               accept="image/png, image/jpeg, image/jpg, image/gif, "
-              value={state.foto}
               required
               onChange={(e) => handleChange(e, "foto")}
             />
@@ -131,10 +158,10 @@ function AdicionaEditaPaletaModal({ closeModal, oneCreatePaleta }) {
           <button
             type="button"
             disabled={canDisable}
-            onClick={createPaleta}
+            onClick={handleSand}
             className="AdicionaPaletaModal__enviar"
           >
-            Enviar
+            {ActionMode.NORMAL === mode ? "Enviar" : "Atualizar"}
           </button>
         </form>
       </div>
