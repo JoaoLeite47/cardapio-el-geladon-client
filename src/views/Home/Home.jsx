@@ -7,6 +7,8 @@ import { ActionMode } from "constants/index";
 import Modal from "components/Modal/Modal";
 
 function Home() {
+  const [paletaEditada, setPaletaEditada] = useState();
+
   const [canShowAdicionaPaletaModal, setCanShowAdicionaPaletaModal] =
     useState(false);
 
@@ -37,6 +39,7 @@ function Home() {
     setPaletasParaAdicionar();
     setPaletaParaDeletar();
     setPaletaParaEditar();
+    setModoAtual(ActionMode.NORMAL);
   };
   return (
     <div className="Home">
@@ -49,6 +52,7 @@ function Home() {
         <PaletaLista
           mode={ModoAtual}
           paletaCriada={paletasParaAdicionar}
+          paletaEditada={paletaEditada}
           deletePaleta={handleDeletePaleta}
           updatePaleta={handleUpdatePaleta}
         />
@@ -56,6 +60,7 @@ function Home() {
           <AdicionaEditaPaletaModal
             mode={ModoAtual}
             paletaToUpdate={PaletaParaEditar}
+            onUpdatePaleta={(paleta) => setPaletaEditada(paleta)}
             closeModal={() => handleCloseModal()}
             oneCreatePaleta={(paleta) => setPaletasParaAdicionar(paleta)}
           />

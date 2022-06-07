@@ -41,7 +41,7 @@ function AdicionaEditaPaletaModal({
   });
 
   const handleSand = async () => {
-    const renomeiaCaminhoFoto = (fotoPath) => fotoPath.split("/\\|\//").pop(); // analisa o tipo de "barra" que o arquivo está sendo salvo
+    const renomeiaCaminhoFoto = (fotoPath) => fotoPath.split(/\\|\//).pop(); // analisa o tipo de "barra" que o arquivo está sendo salvo
 
     const { sabor, recheio, descricao, preco, foto } = state;
 
@@ -57,25 +57,26 @@ function AdicionaEditaPaletaModal({
 
     const serviceCall = {
       [ActionMode.NORMAL]: () => PaletaService.create(paleta),
-      [ActionMode.ATUALIZAR]: () => PaletaService.updateById(paletaToUpdate?.id, paleta),
-    }
+      [ActionMode.ATUALIZAR]: () =>
+        PaletaService.updateById(paletaToUpdate?.id, paleta),
+    };
 
     const res = await serviceCall[mode]();
 
     const actionResponse = {
       [ActionMode.NORMAL]: () => onCreatePaleta(res),
       [ActionMode.ATUALIZAR]: () => onUpdatePaleta(res),
-    }
+    };
 
     actionResponse[mode]();
 
     const reset = {
-      preco: '',
-      sabor: '',
-      recheio: '',
-      descricao: '',
-      foto: '',
-    }
+      preco: "",
+      sabor: "",
+      recheio: "",
+      descricao: "",
+      foto: "",
+    };
 
     setState(reset);
 
@@ -86,7 +87,11 @@ function AdicionaEditaPaletaModal({
     <Modal closeModal={closeModal}>
       <div className="AdicionaPaletaModal">
         <form autoComplete="off">
-        <h2> { ActionMode.ATUALIZAR === mode ? 'Atualizar' : 'Adicionar ao' } Cardápio </h2>
+          <h2>
+            {" "}
+            {ActionMode.ATUALIZAR === mode ? "Atualizar" : "Adicionar ao"}{" "}
+            Cardápio{" "}
+          </h2>
           <div>
             <label className="AdicionarPaletaModal__Text" htmlFor="preco">
               Preço:

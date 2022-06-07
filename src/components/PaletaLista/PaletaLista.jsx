@@ -5,7 +5,13 @@ import { PaletaService } from "services/PaletaService.js";
 import PaletaDetalhesModal from "../PaletaDetalhesModal/PaletaDetalhesModal.jsx";
 import { ActionMode } from "constants/index";
 
-function PaletaLista({ paletaCriada, mode, updatePaleta, deletePaleta }) {
+function PaletaLista({
+  paletaCriada,
+  mode,
+  updatePaleta,
+  deletePaleta,
+  paletaEditada,
+}) {
   // lista as paletas
   const [paletas, setPaletas] = useState([]); // array de paletas
 
@@ -29,19 +35,20 @@ function PaletaLista({ paletaCriada, mode, updatePaleta, deletePaleta }) {
 
   const getLista = async () => {
     // função para buscar as paletas
-    const res = await PaletaService.getLista(); 
+    const res = await PaletaService.getLista();
     setPaletas(res);
   };
 
   useEffect(() => {
     // função para buscar as paletas
     getLista();
-  }, []);
+  }, [paletaEditada]);
 
-  const getPaletaById = async (paletaId) => { //define o estado que o elemento estara com base em hooks anteriores
+  const getPaletaById = async (paletaId) => {
+    //define o estado que o elemento estara com base em hooks anteriores
     const response = await PaletaService.getById(paletaId);
 
-    const mapper = { 
+    const mapper = {
       [ActionMode.NORMAL]: () => setPaletaModal(response),
       [ActionMode.ATUALIZAR]: () => updatePaleta(response),
       [ActionMode.DELETAR]: () => deletePaleta(response),
@@ -50,15 +57,16 @@ function PaletaLista({ paletaCriada, mode, updatePaleta, deletePaleta }) {
     mapper[mode](); // chama a função que define o estado
   };
 
-  const adicionaPaletaNaLista = useCallback(  // função para adicionar a paleta na lista
-    (paleta) => { 
+  const adicionaPaletaNaLista = useCallback(
+    // função para adicionar a paleta na lista
+    (paleta) => {
       const lista = [...paletas, paleta]; // adiciona a paleta na lista
       setPaletas(lista);
     },
     [paletas]
   );
 
-  useEffect(() => { 
+  useEffect(() => {
     if (
       paletaCriada &&
       !paletas.map(({ id }) => id).includes(paletaCriada.id)
@@ -69,7 +77,7 @@ function PaletaLista({ paletaCriada, mode, updatePaleta, deletePaleta }) {
 
   useEffect(() => {
     getLista();
-  }, []);  
+  }, []);
 
   return (
     <div className="PaletaLista">
