@@ -32,8 +32,18 @@
 
 .DeletaPaletaModal__confirmar {
   background-color: #9400d3;
+  transition: all ease-in-out 0.3s;
+}
+
+.DeletaPaletaModal__confirmar:hover {
+  background-color: #6d009c;
 }
 
 .DeletaPaletaModal__cancelar {
   background-color: #ff0000;
+  transition: all ease-in-out 0.3s;
+}
+
+.DeletaPaletaModal__cancelar:hover {
+  background-color: #cf0101;
 }
