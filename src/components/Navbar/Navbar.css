@@ -112,6 +112,10 @@ Header {
   background: darkviolet;
 }
 
+.Paleta--deletar {
+  background: #d30000;
+}
+
 @media (max-width: 1220px) {
   .Header {
     max-width: 720px;

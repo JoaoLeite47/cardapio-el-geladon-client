@@ -47,6 +47,7 @@ function Home() {
         mode={ModoAtual}
         createPaleta={() => setCanShowAdicionaPaletaModal(true)}
         updatePaleta={() => handleActions(ActionMode.ATUALIZAR)}
+        deletePaleta={() => handleActions(ActionMode.DELETAR)}
       />
       <div className="Home__Container">
         <PaletaLista

@@ -3,9 +3,10 @@ import logo from "../../assets/logo.svg";
 import { CgAddR } from "react-icons/cg";
 import { IoBagAdd } from "react-icons/io5";
 import { FiShuffle } from "react-icons/fi";
+import { MdDeleteSweep } from "react-icons/md";
 import { ActionMode } from "constants/index";
 
-function Navbar({ createPaleta, updatePaleta, mode }) {
+function Navbar({ createPaleta, updatePaleta, mode, deletePaleta }) {
   return (
     <div className="Home__header Header">
       <div className="row">
@@ -19,6 +20,7 @@ function Navbar({ createPaleta, updatePaleta, mode }) {
           <span className="Logo__titulo"> El Geladon </span>
         </div>
         <div className="Header__opcoes Opcoes">
+
           <button
             type="button"
             className={`Opcoes__paleta Paleta ${
@@ -32,6 +34,21 @@ function Navbar({ createPaleta, updatePaleta, mode }) {
               alt="Editar Paleta"
             />
           </button>
+
+          <button
+            type="button"
+            className={`Opcoes__paleta Paleta ${
+              mode === ActionMode.DELETAR && "Paleta--deletar"
+            }`}
+            onClick={() => deletePaleta()}
+          >
+            <MdDeleteSweep
+              size="3.2em"
+              className="Paleta__icone"
+              alt="Deletar Paleta"
+            />
+          </button>
+
           <button
             type="button"
             className="Opcoes__Paleta Paleta"
@@ -43,12 +60,14 @@ function Navbar({ createPaleta, updatePaleta, mode }) {
               alt="Adicionar Paleta"
             />
           </button>
+
           <div className="Opcoes__sacola Sacola">
             <IoBagAdd
               size="2.5em"
               className="Sacola__icone"
               alt="Sacola de compras"
             />
+
           </div>
         </div>
       </div>
