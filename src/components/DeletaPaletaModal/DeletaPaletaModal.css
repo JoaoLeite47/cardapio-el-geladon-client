@@ -1,0 +1,44 @@
+.DeletaPaletaModal {
+  margin-top: -20px;
+}
+
+.DeletaPaletaModal > div {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  position: relative;
+}
+
+.DeletaPaletaModal__foto {
+  position: absolute;
+  right: 0px;
+  bottom: 10px;
+  width: 80px;
+}
+
+.DeletaPaletaModal__confirmar,
+.DeletaPaletaModal__cancelar {
+  border: none;
+  border-radius: 5px;
+  font-family: "Exo", sans-serif;
+  padding: 5px;
+  max-width: 280px;
+  text-align: center;
+  font-weight: 700;
+  text-transform: uppercase;
+  cursor: pointer;
+  width: 48%;
+  color: #ffffff;
+}
+
+.DeletaPaletaModal__confirmar {
+  background-color: #9400d3;
+}
+
+.DeletaPaletaModal__cancelar {
+  background-color: #ff0000;
+}
+/*# sourceMappingURL=DeletaPaletaModal.css.map */

@@ -4,7 +4,8 @@ import Navbar from "../../components/Navbar/Navbar";
 import AdicionaEditaPaletaModal from "components/AdicionaEditaPaletaModal/AdicionaEditaPaletaModal";
 import { useState } from "react";
 import { ActionMode } from "constants/index";
-import Modal from "components/Modal/Modal";
+import DeletaPaletaModal from "components/DeletaPaletaModal/DeletaPaletaModal";
+// import Modal from "components/Modal/Modal";
 
 function Home() {
   const [paletaEditada, setPaletaEditada] = useState();
@@ -13,6 +14,8 @@ function Home() {
     useState(false);
 
   const [paletasParaAdicionar, setPaletasParaAdicionar] = useState();
+
+  const [paletaRemovida, setPaletaRemovida] = useState();
 
   const [ModoAtual, setModoAtual] = useState(ActionMode.NORMAL);
 
@@ -56,6 +59,7 @@ function Home() {
           paletaEditada={paletaEditada}
           deletePaleta={handleDeletePaleta}
           updatePaleta={handleUpdatePaleta}
+          paletaRemovida={paletaRemovida}
         />
         {canShowAdicionaPaletaModal && (
           <AdicionaEditaPaletaModal
@@ -64,6 +68,13 @@ function Home() {
             onUpdatePaleta={(paleta) => setPaletaEditada(paleta)}
             closeModal={() => handleCloseModal()}
             oneCreatePaleta={(paleta) => setPaletasParaAdicionar(paleta)}
+          />
+        )}
+        {PaletaParaDeletar && (
+          <DeletaPaletaModal
+            paletaParaDeletar={PaletaParaDeletar}
+            closeModal={handleCloseModal}
+            onDeletePaleta={(paleta) => setPaletaRemovida(paleta)}
           />
         )}
       </div>

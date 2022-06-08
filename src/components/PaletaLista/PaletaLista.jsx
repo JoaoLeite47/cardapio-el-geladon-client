@@ -11,6 +11,7 @@ function PaletaLista({
   updatePaleta,
   deletePaleta,
   paletaEditada,
+  paletaRemovida
 }) {
   // lista as paletas
   const [paletas, setPaletas] = useState([]); // array de paletas
@@ -42,7 +43,7 @@ function PaletaLista({
   useEffect(() => {
     // função para buscar as paletas
     getLista();
-  }, [paletaEditada]);
+  }, [paletaEditada, paletaRemovida]);
 
   const getPaletaById = async (paletaId) => {
     //define o estado que o elemento estara com base em hooks anteriores
@@ -75,9 +76,9 @@ function PaletaLista({
     }
   }, [adicionaPaletaNaLista, paletaCriada, paletas]);
 
-  useEffect(() => {
-    getLista();
-  }, []);
+  // useEffect(() => {
+  //   getLista();
+  // }, []);
 
   return (
     <div className="PaletaLista">
