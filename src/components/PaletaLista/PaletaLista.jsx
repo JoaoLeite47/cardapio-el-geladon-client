@@ -4,6 +4,7 @@ import PaletaListaItem from "../PaletaListaItem/PaletaListaItem.jsx";
 import { PaletaService } from "services/PaletaService.js";
 import PaletaDetalhesModal from "../PaletaDetalhesModal/PaletaDetalhesModal.jsx";
 import { ActionMode } from "constants/index";
+import { matchByText } from "helpers/utils";
 
 function PaletaLista({
   paletaCriada,
@@ -11,10 +12,12 @@ function PaletaLista({
   updatePaleta,
   deletePaleta,
   paletaEditada,
-  paletaRemovida
+  paletaRemovida,
 }) {
   // lista as paletas
   const [paletas, setPaletas] = useState([]); // array de paletas
+
+  const [paletasFiltradas, setPaletasFiltradas] = useState([]); // array de paletas filtradas
 
   const [paletaSelecionada, setPaletaSelecionada] = useState({}); // modificar a quatidade de paletas
 
@@ -67,6 +70,13 @@ function PaletaLista({
     [paletas]
   );
 
+  const filtroPorTitulo = ({ target }) => {
+    const lista = [...paletas].filter(({ titulo }) =>
+      matchByText(titulo, target.value)
+    );
+    setPaletasFiltradas(lista);
+  };
+
   useEffect(() => {
     if (
       paletaCriada &&
@@ -74,6 +84,7 @@ function PaletaLista({
     ) {
       adicionaPaletaNaLista(paletaCriada);
     }
+    setPaletasFiltradas(paletas);
   }, [adicionaPaletaNaLista, paletaCriada, paletas]);
 
   // useEffect(() => {
@@ -81,25 +92,32 @@ function PaletaLista({
   // }, []);
 
   return (
-    <div className="PaletaLista">
-      {paletas.map((paleta, index) => (
-        <PaletaListaItem
-          mode={mode}
-          paleta={paleta}
-          key={`PaletaListaItem-${index}`}
-          quantidadeSelecionada={paletaSelecionada[index]}
-          index={index}
-          onRemove={(index) => removerItem(index)}
-          onAdd={(index) => adicionarItem(index)}
-          clickItem={(paletaId) => getPaletaById(paletaId)}
-        />
-      ))}
-      {paletaModal && (
-        <PaletaDetalhesModal
-          paleta={paletaModal}
-          closeModal={() => setPaletaModal(false)} // fechar o modal de paletas
-        />
-      )}
+    <div className="PaletaLista-Wrapper">
+      <input
+        className="PaletaLista-filtro"
+        onChange={filtroPorTitulo}
+        placeholder="Busque uma paleta pelo título"
+      />
+      <div className="PaletaLista">
+        {paletasFiltradas.map((paleta, index) => (
+          <PaletaListaItem
+            mode={mode}
+            paleta={paleta}
+            key={`PaletaListaItem-${index}`}
+            quantidadeSelecionada={paletaSelecionada[index]}
+            index={index}
+            onRemove={(index) => removerItem(index)}
+            onAdd={(index) => adicionarItem(index)}
+            clickItem={(paletaId) => getPaletaById(paletaId)}
+          />
+        ))}
+        {paletaModal && (
+          <PaletaDetalhesModal
+            paleta={paletaModal}
+            closeModal={() => setPaletaModal(false)} // fechar o modal de paletas
+          />
+        )}
+      </div>
     </div>
   );
 }
