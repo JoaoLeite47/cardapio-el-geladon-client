@@ -55,7 +55,7 @@ function AdicionaEditaPaletaModal({
       foto: `assets/images/${renomeiaCaminhoFoto(foto)}`,
     };
 
-    const serviceCall = {
+    const serviceCall ={
       [ActionMode.NORMAL]: () => PaletaService.create(paleta),
       [ActionMode.ATUALIZAR]: () =>
         PaletaService.updateById(paletaToUpdate?.id, paleta),
